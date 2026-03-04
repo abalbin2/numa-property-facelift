@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import CursorTrailSection from "./cursor-trail";
+import SocialStories from "./sections/social/VariationStories";
 import AmenitiesSkiper from "./sections/amenities/VariationSkiper";
 import RoomsVariationA from "./sections/rooms/VariationA";
 import RoomsVariationB from "./sections/rooms/VariationB";
@@ -10,6 +11,7 @@ import { SECTION_CONFIG } from "./sections/config";
 import type { ComponentType } from "react";
 
 const COMPONENTS: Record<string, ComponentType> = {
+  "social-a": SocialStories,
   "amenities-a": AmenitiesSkiper,
   "rooms-a": RoomsVariationA,
   "rooms-b": RoomsVariationB,

@@ -1,0 +1,193 @@
+/* ── Section ── */
+.section {
+  position: relative;
+  width: 100%;
+  height: 1022px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Headline ── */
+.heading {
+  position: relative;
+  z-index: 2;
+  max-width: 904px;
+  margin: 102px auto 0;
+  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 64px;
+  letter-spacing: -1.5px;
+  font-feature-settings: 'liga' off, 'clig' off;
+  color: #191919;
+  text-align: center;
+}
+
+/* ── Story card ── */
+.storyCard {
+  position: absolute;
+  left: 50%;
+  top: 310px;
+  transform: translateX(-50%);
+  width: 348px;
+  height: 571px;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 3;
+}
+
+/* Story video */
+.storyVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tap zones */
+.tapZone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.tapLeft  { left: 0; }
+.tapRight { right: 0; }
+
+/* ── Progress bars (one per story) ── */
+.progressBars {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  gap: 4px;
+  z-index: 4;
+}
+
+.progressTrack {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: #fff;
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+/* ── Profile header ── */
+.profileHeader {
+  position: absolute;
+  top: 24px;
+  left: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  z-index: 2;
+}
+
+.avatarRing {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #ccc url("/amenities/gym.jpg") center / cover;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+}
+
+.username {
+  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4em;
+  letter-spacing: -0.1px;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Mute button ── */
+.muteBtn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.35);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0;
+}
+
+.muteBtn:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* ── Decorative collage images ── */
+.collage {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+/* top-left */
+.collage1 {
+  left: 4.4%;
+  top: 22.3%;
+  width: 15.7%;
+  aspect-ratio: 237 / 181;
+}
+
+/* left, lower */
+.collage2 {
+  left: 10.9%;
+  top: 66.9%;
+  width: 15.7%;
+  aspect-ratio: 237 / 272;
+}
+
+/* right, upper */
+.collage3 {
+  left: 77.3%;
+  top: 25.7%;
+  width: 15.7%;
+  aspect-ratio: 237 / 272;
+}
+
+/* right, lower */
+.collage4 {
+  left: 77.3%;
+  top: 80.2%;
+  width: 9.4%;
+  aspect-ratio: 142 / 148;
+}

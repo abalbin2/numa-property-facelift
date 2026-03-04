@@ -11,18 +11,18 @@ export type SectionConfig = {
 
 export const SECTION_CONFIG: SectionConfig[] = [
   {
-    id: "amenities",
-    label: "Amenities",
-    variants: [
-      { id: "a", label: "A — Skiper" },
-    ],
-  },
-  {
     id: "rooms",
     label: "Rooms",
     variants: [
       { id: "a", label: "A — List + Detail" },
       { id: "b", label: "B — Room Cards" },
+    ],
+  },
+  {
+    id: "amenities",
+    label: "Amenities",
+    variants: [
+      { id: "a", label: "A — Skiper" },
     ],
   },
   {
@@ -32,6 +32,13 @@ export const SECTION_CONFIG: SectionConfig[] = [
       { id: "a", label: "A — Cursor Trail" },
       { id: "b", label: "B — Parallax Scroll" },
       { id: "c", label: "C — Carousel" },
+    ],
+  },
+  {
+    id: "social",
+    label: "Social Media",
+    variants: [
+      { id: "a", label: "A — Stories" },
     ],
   },
 ];
