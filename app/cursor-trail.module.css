@@ -1,0 +1,38 @@
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #191919;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trailImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 350px;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  z-index: 1;
+}
+
+.text {
+  position: relative;
+  z-index: 9999;
+  width: 1230px;
+  max-width: 90%;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 1.1em;
+  letter-spacing: -0.01875em;
+  color: #FFC9D2;
+  text-align: center;
+  pointer-events: none;
+}

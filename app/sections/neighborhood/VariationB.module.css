@@ -1,0 +1,70 @@
+/* ── Scroll driver — creates the scroll space ── */
+.wrapper {
+  position: relative;
+  height: 300vh;
+}
+
+/* ── Sticky viewport — stays fixed while you scroll through .wrapper ── */
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* ── Headline ── */
+.headline {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1166px;
+  max-width: 90%;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 1.1em;
+  letter-spacing: -0.01875em;
+  color: var(--red);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+  /* opacity animated by GSAP */
+}
+
+/* ── Image columns container ── */
+.columnsContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 20;
+}
+
+/* 1512px canvas, centered */
+.columnsInner {
+  position: relative;
+  margin: 0 auto;
+  width: 1512px;
+  height: 100%;
+}
+
+/* Individual column — absolutely positioned per Figma left values */
+.column {
+  position: absolute;
+  top: 0;
+  width: 338px;
+  display: flex;
+  flex-direction: column;
+  gap: 110px; /* matches Figma inter-image spacing */
+  /* translateY set and animated by GSAP */
+}
+
+/* Each image */
+.img {
+  display: block;
+  width: 338px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}

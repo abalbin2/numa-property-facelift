@@ -1,0 +1,18 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --red:   #EA2720;
+  --pink:  #FFC9D2;
+  --white: #FFFFFF;
+  --navy:  #1C1B38;
+  --font:  'TWK Lausanne', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--white);
+}

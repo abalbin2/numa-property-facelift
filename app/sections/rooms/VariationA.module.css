@@ -1,0 +1,210 @@
+/* ── Section ── */
+.section {
+  display: flex;
+  width: 100%;
+  height: 982px;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* ────────────────────────────────────────
+   LEFT PANEL  (532px)
+──────────────────────────────────────── */
+.left {
+  width: 532px;
+  flex-shrink: 0;
+  padding-top: 58px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 1.1em;
+  letter-spacing: -0.01875em;
+  color: #191919;
+  padding-left: 64px;
+  padding-bottom: 32px;
+  margin: 0;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 12px 32px 12px 64px;
+  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  font-feature-settings: 'liga' off, 'clig' off;
+  color: #191919;
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.2s ease;
+  user-select: none;
+}
+
+.item:hover {
+  background: #FFC9D2;
+}
+
+.itemSelected {
+  background: #FFC9D2;
+}
+
+/* ────────────────────────────────────────
+   RIGHT PANEL  (flex: 1, ~980px)
+──────────────────────────────────────── */
+.right {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background images — crossfade on room change */
+.bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.bgActive {
+  opacity: 1;
+}
+
+/* Dark gradient — from transparent at 55.7% to semi-dark at 73.42% */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 55.7%, rgba(51, 51, 51, 0.50) 73.42%);
+  z-index: 1;
+}
+
+/* Detail content */
+.detail {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 32px;
+  padding: 56px;
+}
+
+/* ── Info block (name + amenities) ── */
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 472px;
+}
+
+.roomName {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.222em;
+  letter-spacing: -0.011em;
+  color: #fff;
+  margin: 0;
+}
+
+.amenities {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: -0.0125em;
+  color: #fff;
+}
+
+.pipe {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Price block (price row + button) ── */
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.priceMain {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.333em;
+  letter-spacing: -0.011em;
+  color: #fff;
+}
+
+.priceOrig {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.143em;
+  letter-spacing: -0.014em;
+  color: #666B6F;
+  text-decoration: line-through;
+}
+
+.guests {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: -0.0125em;
+  color: #fff;
+}
+
+/* ── Book now button ── */
+.bookBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 231px;
+  height: 56px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  background: transparent;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.333em;
+  letter-spacing: -0.011em;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.bookBtn:hover {
+  background: #fff;
+  color: #191919;
+}

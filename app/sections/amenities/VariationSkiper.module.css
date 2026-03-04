@@ -1,0 +1,83 @@
+/* ── Section ── */
+.section {
+  display: flex;
+  width: 100%;
+  height: 982px;
+  overflow: hidden;
+  background: #fff;
+  padding: 0 64px;
+}
+
+/* ── Strip ── */
+.strip {
+  flex: 0 0 auto;
+  width: 92px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+  cursor: pointer;
+  border-right: 1px solid #ECEAE7;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.strip:last-child {
+  border-right: none;
+}
+
+.strip.active {
+  /* 92px label + 24px padding-left + 620px image + 32px padding-right */
+  width: 768px;
+}
+
+/* ── Label column — full strip width, label at bottom with 24px side padding ── */
+.labelCol {
+  width: 92px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 24px 40px;
+}
+
+.label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.222em;
+  letter-spacing: -0.4px;
+  color: #B2B2B2;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.labelActive {
+  color: #191919;
+}
+
+/* ── Image column — sits to the right of the label, fades in when active ── */
+.imageCol {
+  flex: 1;
+  min-width: 0;
+  padding: 33px 32px 34px 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease 0.25s;
+}
+
+.strip.active .imageCol {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Room image — fills available width, fixed height ── */
+.image {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+}
