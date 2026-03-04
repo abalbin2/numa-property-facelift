@@ -26,7 +26,7 @@ const SLIDES = [
 
 export default function NeighborhoodCarouselSection() {
   const [current, setCurrent] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const go = useCallback((idx: number) => {
     clearTimeout(timerRef.current);
