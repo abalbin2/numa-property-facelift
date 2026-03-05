@@ -11,6 +11,14 @@ export type SectionConfig = {
 
 export const SECTION_CONFIG: SectionConfig[] = [
   {
+    id: "hero",
+    label: "Hero",
+    variants: [
+      { id: "a", label: "A — Split Panel" },
+      { id: "b", label: "B — Full Bleed" },
+    ],
+  },
+  {
     id: "rooms",
     label: "Rooms",
     variants: [
