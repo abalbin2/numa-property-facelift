@@ -127,8 +127,8 @@ export default function HeroV3() {
         {/* Headline */}
         <div ref={headlineRef} className={`${styles.endContent} ${styles.headline}`}>
           <p className={styles.headlineText}>
-            Where the skyline meets the city&apos;s creative streak, Numa Berlin
-            Torstraße gives you front-row access to its iconic boulevard.
+            Where the skyline meets the city&apos;s creative streak, Numa Rotterdam
+            Coolsingel gives you front-row access to its iconic boulevard.
           </p>
         </div>
 
