@@ -1,51 +1,172 @@
+/* ──────────────────────────────────────
+   ROOMS B — Room Cards
+────────────────────────────────────── */
 .section {
   width: 100%;
   background: #fff;
-  padding: 56px 0;
+  padding: 80px 0;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  padding: 0;
-  max-width: 1200px;
+  gap: 16px;
+  max-width: 1512px;
   margin: 0 auto;
+  padding: 0;
+}
+
+/* ──────────────────────────────────────
+   HEADER
+────────────────────────────────────── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 32px;
 }
 
 .heading {
-  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
-  font-style: normal;
+  font-family: var(--font);
   font-weight: 600;
   font-size: 52px;
-  line-height: 64px;
-  letter-spacing: -1.5px;
-  font-feature-settings: 'liga' off, 'clig' off;
+  line-height: 1.23em;
+  letter-spacing: -0.0288em;
   color: #000;
-  text-align: left;
+  text-align: center;
   margin: 0;
 }
 
+/* ── Search row ── */
+.searchRow {
+  position: relative;
+  width: 100%;
+  max-width: 1512px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* Search pill */
+.searchPill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  width: 598px;
+  border: 1px solid #DEDDDB;
+  border-radius: 999px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 0 20px 0 32px;
+  background: #fff;
+}
+
+.searchCol {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  padding: 16px 8px;
+}
+
+.searchLabel {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.3em;
+  letter-spacing: -0.0125em;
+  color: #191919;
+}
+
+.searchPlaceholder {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: -0.0125em;
+  color: #6D706F;
+}
+
+.searchDivider {
+  width: 1px;
+  align-self: stretch;
+  background: #DEDDDB;
+  margin: 12px 24px;
+  flex-shrink: 0;
+}
+
+.searchBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: 40px;
+  background: #212322;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+/* Filter chip */
+.filterChip {
+  position: absolute;
+  right: 156px;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+  padding: 5px 12px;
+  border: 2px solid #DEDDDB;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.filterLabel {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: -0.0125em;
+  color: #191919;
+}
+
+/* ──────────────────────────────────────
+   CARDS AREA
+────────────────────────────────────── */
+.cardsArea {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 156px;
+}
+
+/* ── Top row — 3 small cards ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 48px 30px;
+  gap: 40px 32px;
 }
 
-/* ── Card ── */
 .card {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* ── Image ── */
+/* ── Card image ── */
 .imageWrap {
   position: relative;
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   overflow: hidden;
 }
+
 
 .image {
   width: 100%;
@@ -54,13 +175,26 @@
   background-position: center;
 }
 
-.imageOverlay {
+/* ── Card overlays ── */
+.cardTopBar {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
-  justify-content: flex-end;
   padding: 16px;
+}
+
+/* Hidden badge placeholder (opacity 0, reserved for future use) */
+.cardBadge {
+  height: 36px;
+  border-radius: 999px;
+  background: #F4F4F4;
+  opacity: 0;
+  width: 80px;
 }
 
 .heartBtn {
@@ -81,31 +215,97 @@
   background: #fff;
 }
 
-/* ── Info block ── */
+.viewBtn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 114px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #fff;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25em;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.carouselDots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.dotActive {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.dotInactive {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(222, 221, 219, 0.5);
+  flex-shrink: 0;
+}
+
+/* ── Card info ── */
 .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardTitleBlock {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
 .roomName {
-  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.333em;
-  letter-spacing: -0.2px;
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.43em;
+  letter-spacing: -0.01429em;
   color: #000;
   margin: 0;
 }
 
-.description {
-  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
+.detailsRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.detail {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.43em;
+  letter-spacing: -0.01429em;
+  color: #6D706F;
+}
+
+.dot {
+  font-family: var(--font);
   font-weight: 300;
   font-size: 16px;
   line-height: 1.5em;
-  letter-spacing: -0.2px;
   color: #6D706F;
-  margin: 0;
 }
 
 /* ── Price row ── */
@@ -117,29 +317,28 @@
 }
 
 .price {
-  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
-  font-weight: 300;
+  font-family: var(--font);
+  font-weight: 600;
   font-size: 16px;
   line-height: 1.5em;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.0125em;
   color: #191919;
 }
 
-.originalPrice {
-  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 1.5em;
-  letter-spacing: -0.2px;
+.priceBadge {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33em;
+  letter-spacing: -0.01667em;
   color: #6D706F;
-  text-decoration: line-through;
+  background: #F4F4F4;
+  border: 1px solid #DEDDDB;
+  border-radius: 999px;
+  height: 20px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
-.duration {
-  font-family: "TWK Lausanne", system-ui, -apple-system, sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 1.5em;
-  letter-spacing: -0.2px;
-  color: #6D706F;
-}

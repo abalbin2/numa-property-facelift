@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import HeroV1 from "./sections/hero/HeroV1";
 import HeroV2 from "./sections/hero/HeroV2";
+import HeroV3 from "./sections/hero/HeroV3";
 import CursorTrailSection from "./cursor-trail";
 import SocialStories from "./sections/social/VariationStories";
 import AmenitiesSkiper from "./sections/amenities/VariationSkiper";
@@ -14,6 +15,7 @@ import type { ComponentType } from "react";
 const COMPONENTS: Record<string, ComponentType> = {
   "hero-a": HeroV1,
   "hero-b": HeroV2,
+  "hero-c": HeroV3,
   "social-a": SocialStories,
   "amenities-a": AmenitiesSkiper,
   "rooms-a": RoomsVariationA,

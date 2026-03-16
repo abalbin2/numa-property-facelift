@@ -1,0 +1,347 @@
+/* ──────────────────────────────────────
+   HERO V3 — Full-bleed video with morph
+   transition into content + photo collage
+────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  min-height: 700px;
+}
+
+/* ──────────────────────────────────────
+   END STATE: WHITE BACKGROUND
+   (fades in on scroll)
+────────────────────────────────────── */
+.sectionBg {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  z-index: 1;
+}
+
+/* ──────────────────────────────────────
+   MAIN VIDEO WRAPPER
+   GSAP owns: top, left, width, height
+────────────────────────────────────── */
+.mainVideo {
+  position: absolute;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Subtle gradient overlay — lives inside the video wrapper
+   so it scales with the card during the morph.
+   Figma: linear #000→#333, 40% fill opacity */
+.videoGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #000000 0%, #333333 100%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────
+   END STATE: CENTERED CONTAINER
+   1200px wide, centered. All end-state
+   elements live inside with positions
+   relative to this container
+   (original Figma x − 163px left margin).
+────────────────────────────────────── */
+.endStateContainer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1200px;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────
+   END STATE: STATIC PHOTOS
+   x values = Figma x − 163 (left margin)
+────────────────────────────────────── */
+.endPhoto {
+  position: absolute;
+  overflow: hidden;
+}
+
+/* Photo B — 744−163=581 */
+.photoB {
+  left: 581px;
+  top: 481px;
+  width: 311px;
+  height: 315px;
+}
+
+/* Photo C — 1034−163=871 */
+.photoC {
+  left: 871px;
+  top: 238px;
+  width: 312px;
+  height: 214px;
+}
+
+/* Photo D — 1083−163=920 */
+.photoD {
+  left: 920px;
+  top: 481px;
+  width: 208px;
+  height: 174px;
+}
+
+/* ──────────────────────────────────────
+   END STATE: TEXT CONTENT
+────────────────────────────────────── */
+.endContent {
+  position: absolute;
+}
+
+.headline {
+  left: 0;
+  top: 157px;
+  width: 381px;
+}
+
+.headlineText {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.222em;
+  letter-spacing: -0.01111em;
+  color: #191919;
+  margin: 0;
+}
+
+.quickInfo {
+  left: 0;
+  top: 481px;
+  width: 382px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 57px;
+}
+
+.quickInfoLabel {
+  display: block;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.333em;
+  letter-spacing: -0.01111em;
+  color: #191919;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 5px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.infoText {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: -0.0125em;
+  color: #191919;
+}
+
+.infoDivider {
+  border: none;
+  border-top: 1px solid #DEDDDB;
+  margin: 0;
+}
+
+/* ──────────────────────────────────────
+   HERO OVERLAY
+   Contains gradient, nav, content
+   Fades out on scroll
+────────────────────────────────────── */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────
+   NAVIGATION — frosted white
+────────────────────────────────────── */
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.70);
+  pointer-events: auto;
+}
+
+.navLogo {
+  display: block;
+  width: 126px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navLink {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.222em;
+  letter-spacing: 0.03em;
+  color: #191919;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.navIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────
+   HERO CONTENT — bottom-left
+────────────────────────────────────── */
+.heroContent {
+  position: absolute;
+  bottom: 64px;
+  left: 156px;
+  width: 738px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  pointer-events: auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #FFF0E9;
+  color: #B24612;
+  padding: 5px 8px;
+  height: 36px;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: -0.0125em;
+  width: fit-content;
+}
+
+.heroName {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 96px;
+  line-height: 1em;
+  letter-spacing: -0.03125em;
+  color: var(--pink);
+  margin: 0;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.ratingGroup,
+.addressGroup {
+  display: flex;
+  align-items: center;
+}
+
+.ratingGroup {
+  gap: 12px;
+}
+
+.addressGroup {
+  gap: 8px;
+}
+
+.metaText {
+  font-family: var(--font);
+  font-size: 20px;
+  line-height: 1.4em;
+  color: var(--pink);
+}
+
+.metaTextBold {
+  font-weight: 600;
+}
+
+.metaTextLight {
+  font-weight: 300;
+}
+
+.ctaRow {
+  display: flex;
+  gap: 32px;
+}
+
+.btnPrimary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 16px 24px;
+  background: #ffffff;
+  color: #191919;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.333em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btnSecondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 16px 24px;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.333em;
+  cursor: pointer;
+  white-space: nowrap;
+}

@@ -16,6 +16,7 @@ export const SECTION_CONFIG: SectionConfig[] = [
     variants: [
       { id: "a", label: "A — Split Panel" },
       { id: "b", label: "B — Full Bleed" },
+      { id: "c", label: "C — Video Morph" },
     ],
   },
   {
