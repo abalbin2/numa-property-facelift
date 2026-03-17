@@ -62,13 +62,16 @@ export default async function PropertyPage({
         return section.variants.map((variant) => {
           const Component = COMPONENTS[`${section.id}-${variant.id}`];
           if (!Component) return null;
+          const showLabel = section.variants.length > 1;
           return (
             <div key={`${section.id}-${variant.id}`}>
-              <div className={styles.variantLabel}>
-                <span>{section.label}</span>
-                <span className={styles.variantLabelDivider}>·</span>
-                <span>{variant.label}</span>
-              </div>
+              {showLabel && (
+                <div className={styles.variantLabel}>
+                  <span>{section.label}</span>
+                  <span className={styles.variantLabelDivider}>·</span>
+                  <span>{variant.label}</span>
+                </div>
+              )}
               <Component />
             </div>
           );
