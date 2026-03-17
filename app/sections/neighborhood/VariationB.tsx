@@ -50,6 +50,7 @@ const COLUMNS = [
 
 export default function NeighborhoodScrollSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const colRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -71,8 +72,11 @@ export default function NeighborhoodScrollSection() {
         },
       });
 
-      // Text fades from 1 → 0.05
-      tl.to(textRef.current, { opacity: 0.05, ease: "none" }, 0);
+      // Background fades from white → pink (quick fade, completes early)
+      tl.to(stickyRef.current, { backgroundColor: "#FFC9D2", duration: 0.02, ease: "none" }, 0);
+
+      // Text fully fades out in the first half of scroll
+      tl.to(textRef.current, { opacity: 0, duration: 0.4, ease: "none" }, 0);
 
       // Each column travels a different distance = parallax depth effect
       colRefs.current.forEach((col, i) => {
@@ -86,11 +90,11 @@ export default function NeighborhoodScrollSection() {
 
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
-      <div className={styles.sticky}>
+      <div ref={stickyRef} className={styles.sticky}>
         {/* Headline — fades as images rise */}
         <p ref={textRef} className={styles.headline}>
-          At Numa Berlin Torstraße, you&apos;re dialed into Mitte&apos;s blend of
-          galleries, street eats, and late-night hangouts.
+          Where the skyline meets the city&apos;s creative streak, Numa Rotterdam
+          Coolsingel gives you front-row access to its iconic boulevard.
         </p>
 
         {/* Image columns */}

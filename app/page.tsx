@@ -5,10 +5,16 @@ import HeroV3 from "./sections/hero/HeroV3";
 import CursorTrailSection from "./cursor-trail";
 import SocialStories from "./sections/social/VariationStories";
 import AmenitiesSkiper from "./sections/amenities/VariationSkiper";
+import AmenitiesVariationB from "./sections/amenities/VariationB";
 import RoomsVariationA from "./sections/rooms/VariationA";
 import RoomsVariationB from "./sections/rooms/VariationB";
+import SpotlightVariationA from "./sections/spotlight/VariationA";
 import NeighborhoodScrollSection from "./sections/neighborhood/VariationB";
 import NeighborhoodCarouselSection from "./sections/neighborhood/VariationC";
+import MapVariationA from "./sections/map/VariationA";
+import ReviewsVariationA from "./sections/reviews/VariationA";
+import AdditionalInfoVariationA from "./sections/additional-info/VariationA";
+import FooterVariationA from "./sections/footer/VariationA";
 import { SECTION_CONFIG } from "./sections/config";
 import type { ComponentType } from "react";
 
@@ -18,11 +24,17 @@ const COMPONENTS: Record<string, ComponentType> = {
   "hero-c": HeroV3,
   "social-a": SocialStories,
   "amenities-a": AmenitiesSkiper,
+  "amenities-b": AmenitiesVariationB,
   "rooms-a": RoomsVariationA,
   "rooms-b": RoomsVariationB,
+  "spotlight-a": SpotlightVariationA,
   "neighborhood-a": CursorTrailSection,
   "neighborhood-b": NeighborhoodScrollSection,
   "neighborhood-c": NeighborhoodCarouselSection,
+  "map-a": MapVariationA,
+  "reviews-a": ReviewsVariationA,
+  "additional-info-a": AdditionalInfoVariationA,
+  "footer-a": FooterVariationA,
 };
 
 export default async function PropertyPage({

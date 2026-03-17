@@ -32,6 +32,14 @@ export const SECTION_CONFIG: SectionConfig[] = [
     label: "Amenities",
     variants: [
       { id: "a", label: "A — Skiper" },
+      { id: "b", label: "B — Icon Grid" },
+    ],
+  },
+  {
+    id: "spotlight",
+    label: "Spotlight",
+    variants: [
+      { id: "a", label: "A — Split Feature" },
     ],
   },
   {
@@ -44,10 +52,38 @@ export const SECTION_CONFIG: SectionConfig[] = [
     ],
   },
   {
+    id: "map",
+    label: "Map",
+    variants: [
+      { id: "a", label: "A — Interactive Map" },
+    ],
+  },
+  {
     id: "social",
     label: "Social Media",
     variants: [
       { id: "a", label: "A — Stories" },
+    ],
+  },
+  {
+    id: "reviews",
+    label: "Reviews",
+    variants: [
+      { id: "a", label: "A — Guest Reviews" },
+    ],
+  },
+  {
+    id: "additional-info",
+    label: "Additional Info",
+    variants: [
+      { id: "a", label: "A — Accordion" },
+    ],
+  },
+  {
+    id: "footer",
+    label: "Footer",
+    variants: [
+      { id: "a", label: "A — Full Footer" },
     ],
   },
 ];

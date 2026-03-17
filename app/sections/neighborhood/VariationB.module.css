@@ -10,7 +10,7 @@
   top: 0;
   height: 100vh;
   overflow: hidden;
-  background: #ffffff;
+  background: #FFFFFF;
 }
 
 /* ── Headline ── */
@@ -26,7 +26,7 @@
   font-size: 80px;
   line-height: 1.1em;
   letter-spacing: -0.01875em;
-  color: var(--red);
+  color: #191919;
   text-align: center;
   z-index: 10;
   pointer-events: none;

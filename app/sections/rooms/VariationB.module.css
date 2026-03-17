@@ -15,6 +15,14 @@
   margin: 0 auto 80px;
 }
 
+.sectionDividerBottom {
+  height: 1px;
+  background: #DEDDDB;
+  max-width: 1200px;
+  width: 100%;
+  margin: 80px auto 0;
+}
+
 .inner {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,191 @@
+/* ── Footer container ── */
+.footer {
+  display: flex;
+  flex-direction: column;
+  background: #FFC9D2;
+  font-family: var(--font);
+  overflow: hidden;
+  padding: 80px 0 40px;
+}
+
+/* ── Content limiter ── */
+.contentWidth {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Link columns grid ── */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+/* ── Single link column ── */
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 16px;
+}
+
+.columnTitle {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.2px;
+  color: #191919;
+}
+
+.columnLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columnLink {
+  font-family: var(--font);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+  font-feature-settings: 'liga' off, 'clig' off;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.columnLink:hover {
+  border-bottom: 1px solid #191919;
+}
+
+/* ── Right column: social / app / pay ── */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 32px;
+}
+
+.subSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 16px;
+}
+
+/* ── Social icons ── */
+.socialRow {
+  display: flex;
+  gap: 16px;
+}
+
+.socialItem {
+  background-color: #191919;
+  border-radius: 80px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.socialItem:hover {
+  background-color: rgba(25, 25, 25, 0.6);
+}
+
+.socialItem img {
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+/* ── App badges ── */
+.badgeRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badgeRow img {
+  height: 38px;
+  width: auto;
+}
+
+/* ── Payment icons ── */
+.payRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.payItem {
+  overflow: hidden;
+  width: 60px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.payItem img {
+  width: 100%;
+  height: auto;
+}
+
+/* ── Logo ── */
+.numaLogo {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Copyright / legal bar ── */
+.copyrightBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  font-size: 12px;
+  font-weight: 250;
+  line-height: 14px;
+  letter-spacing: -0.2px;
+  color: #191919;
+}
+
+.termsLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 12px;
+}
+
+.termsLinks li a {
+  color: #191919;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.termsLinks li a:hover {
+  border-bottom: 1px solid #191919;
+}
+
+.copyright {
+  font-size: 12px;
+  font-weight: 250;
+  line-height: 14px;
+  letter-spacing: -0.2px;
+  color: #191919;
+}

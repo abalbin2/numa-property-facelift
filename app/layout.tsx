@@ -23,6 +23,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={lausanne.variable}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=block"
+        />
+      </head>
       <body>
         {children}
         {process.env.NODE_ENV === "development" && <Agentation endpoint="http://localhost:4747" />}

@@ -175,6 +175,7 @@ export default function RoomsVariationB() {
           </div>
         </div>
       </div>
+      <div className={styles.sectionDividerBottom} aria-hidden="true" />
     </section>
   );
 }

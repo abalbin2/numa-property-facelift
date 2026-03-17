@@ -1,0 +1,185 @@
+/* ── Section wrapper — full width, clips horizontal overflow ── */
+.section {
+  background: #fff;
+  overflow: hidden;
+}
+
+/* ── Inner container — padded content ── */
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 0 156px 120px;
+  max-width: 1512px;
+  margin: 0 auto;
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: #dedddb;
+  margin-top: 120px;
+}
+
+/* ── Content area ── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 80px;
+}
+
+/* ── Header row ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 4px;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 1.23;
+  letter-spacing: -0.029em;
+  color: #000;
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ratingScore {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.ratingNumber {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #000;
+}
+
+.reviewCount {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #6d706f;
+}
+
+/* ── Nav arrows ── */
+.navArrows {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f4f4f4;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.navArrow:hover {
+  background: #eaeaea;
+}
+
+/* ── Cards carousel track ── */
+.cardsViewport {
+  /* Break out of the padded container to bleed right */
+  margin-right: -156px;
+}
+
+.cardsTrack {
+  display: flex;
+  gap: 56px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card {
+  flex-shrink: 0;
+  width: 315px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardText {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.0125em;
+  color: #000;
+}
+
+.cardAuthor {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.authorName {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.0125em;
+  color: #000;
+}
+
+.authorSource {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.017em;
+  color: #6d706f;
+}
+
+/* ── CTA button ── */
+.cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  padding: 16px 24px;
+  border: 2px solid #191919;
+  border-radius: 8px;
+  background: transparent;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.33;
+  letter-spacing: -0.011em;
+  color: #191919;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.cta:hover {
+  background: #f4f4f4;
+}
