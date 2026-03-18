@@ -9,6 +9,7 @@ import AmenitiesVariationB from "./sections/amenities/VariationB";
 import RoomsVariationA from "./sections/rooms/VariationA";
 import RoomsVariationB from "./sections/rooms/VariationB";
 import SpotlightVariationA from "./sections/spotlight/VariationA";
+import SpotlightVariationB from "./sections/spotlight/VariationB";
 import NeighborhoodScrollSection from "./sections/neighborhood/VariationB";
 import NeighborhoodCarouselSection from "./sections/neighborhood/VariationC";
 import MapVariationA from "./sections/map/VariationA";
@@ -29,6 +30,7 @@ const COMPONENTS: Record<string, ComponentType> = {
   "rooms-a": RoomsVariationA,
   "rooms-b": RoomsVariationB,
   "spotlight-a": SpotlightVariationA,
+  "spotlight-b": SpotlightVariationB,
   "neighborhood-a": CursorTrailSection,
   "neighborhood-b": NeighborhoodScrollSection,
   "neighborhood-c": NeighborhoodCarouselSection,

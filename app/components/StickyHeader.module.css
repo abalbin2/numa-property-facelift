@@ -8,6 +8,7 @@
   border-bottom: 1px solid #dedddb;
   transform: translateY(-100%);
   will-change: transform;
+  transition: background-color 0.3s ease;
 }
 
 .inner {

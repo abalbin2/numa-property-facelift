@@ -40,6 +40,7 @@ export const SECTION_CONFIG: SectionConfig[] = [
     label: "Spotlight",
     variants: [
       { id: "a", label: "A — Split Feature" },
+      { id: "b", label: "B — Card Stack" },
     ],
   },
   {

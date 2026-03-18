@@ -1,0 +1,99 @@
+.section {
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.sectionDivider {
+  height: 1px;
+  background: #DEDDDB;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.inner {
+  display: flex;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 0;
+}
+
+/* ── Left: Image column ── */
+.imageColumn {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageStack {
+  width: 435px;
+  height: 579px;
+  position: relative;
+  /* No overflow hidden — smaller cards peek above */
+}
+
+.card {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 435px;
+  height: 579px;
+  border-radius: 12px;
+  overflow: hidden;
+  will-change: transform, width, height, left, bottom;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Right: Text column ── */
+.textColumn {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+}
+
+.featureItem {
+  cursor: pointer;
+}
+
+.featureName {
+  font-family: var(--font), system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.1em;
+  letter-spacing: -0.0105em;
+  color: #6D706F;
+  transition: color 0.35s ease;
+  margin: 0;
+}
+
+.featureItemActive .featureName {
+  color: #191919;
+}
+
+.descriptionWrap {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.4s ease;
+}
+
+.description {
+  font-family: var(--font), system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: -0.0125em;
+  color: #6D706F;
+  margin: 0;
+  padding-top: 16px;
+}

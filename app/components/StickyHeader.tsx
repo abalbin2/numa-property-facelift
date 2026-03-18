@@ -82,7 +82,29 @@ export default function StickyHeader() {
       return current;
     };
 
-    const onScroll = () => setActiveSection(getActiveSection());
+    // Match header bg to the neighborhood section's animated background
+    const syncHeaderBg = () => {
+      if (!header) return;
+      const neighborhoodEl = document.getElementById("neighborhood");
+      if (!neighborhoodEl) return;
+
+      const rect = neighborhoodEl.getBoundingClientRect();
+      // Check if the neighborhood section is behind the header
+      if (rect.top <= HEADER_HEIGHT && rect.bottom > HEADER_HEIGHT) {
+        // Read the sticky inner div's computed bg (GSAP animates it)
+        const stickyDiv = neighborhoodEl.querySelector("[class*='sticky']");
+        if (stickyDiv) {
+          header.style.backgroundColor = getComputedStyle(stickyDiv).backgroundColor;
+          return;
+        }
+      }
+      header.style.backgroundColor = "#ffffff";
+    };
+
+    const onScroll = () => {
+      setActiveSection(getActiveSection());
+      syncHeaderBg();
+    };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     // Set initial active state

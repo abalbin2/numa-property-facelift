@@ -66,10 +66,11 @@
 .itemTitle {
   font-family: var(--font);
   font-weight: 300;
-  font-size: 18px;
-  line-height: 1.33;
-  letter-spacing: -0.011em;
-  color: #191919;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+  color: #000;
+  font-feature-settings: 'liga' off, 'clig' off;
 }
 
 .icon {
