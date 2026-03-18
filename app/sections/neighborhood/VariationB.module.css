@@ -23,9 +23,9 @@
   max-width: 90%;
   font-family: var(--font);
   font-weight: 600;
-  font-size: 80px;
-  line-height: 1.1em;
-  letter-spacing: -0.01875em;
+  font-size: 52px;
+  line-height: 64px;
+  letter-spacing: -1.5px;
   color: #191919;
   text-align: center;
   z-index: 10;
