@@ -76,6 +76,11 @@
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
   padding: 0 20px 0 32px;
   background: #fff;
+  transition: background 0.2s ease;
+}
+
+.searchPillOpen {
+  background: #F4F4F4;
 }
 
 .searchCol {
@@ -84,6 +89,31 @@
   gap: 3px;
   flex: 1;
   padding: 16px 8px;
+}
+
+.searchColBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 999px;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchColBtn:hover {
+  background: #E0E0E0;
+}
+
+.searchColActive {
+  background: #fff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+  /* Span to left edge of pill by eating into pill's 32px left padding */
+  margin-left: -32px;
+  padding-left: 40px;
+}
+
+.searchColActive:hover {
+  background: #fff;
 }
 
 .searchLabel {
@@ -104,12 +134,54 @@
   color: #6D706F;
 }
 
+.searchValue {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: -0.0125em;
+  color: #191919;
+}
+
 .searchDivider {
   width: 1px;
   align-self: stretch;
   background: #DEDDDB;
-  margin: 12px 24px;
+  margin: 12px 0;
   flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+
+.searchDividerHidden {
+  opacity: 0;
+}
+
+/* Who + Search grouped */
+.searchWhoGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  gap: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchWhoGroup:hover {
+  background: #E0E0E0;
+}
+
+.searchWhoGroupActive {
+  background: #fff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+  /* Span to right edge of pill by eating into pill's 20px right padding */
+  margin-right: -20px;
+  padding-right: 12px;
+}
+
+.searchWhoGroupActive:hover {
+  background: #fff;
 }
 
 .searchBtn {
@@ -345,6 +417,23 @@
   line-height: 1.5em;
   letter-spacing: -0.0125em;
   color: #191919;
+}
+
+.priceClickable {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.priceClickable:hover {
+  color: #6d706f;
+}
+
+.priceRowRelative {
+  position: relative;
 }
 
 .priceBadge {

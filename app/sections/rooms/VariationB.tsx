@@ -1,6 +1,10 @@
 "use client";
 
+import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./VariationB.module.css";
+import DatePicker from "../../components/DatePicker";
+import GuestPicker from "../../components/GuestPicker";
+import PriceBreakdown from "../../components/PriceBreakdown";
 
 const ROOMS = [
   {
@@ -10,7 +14,7 @@ const ROOMS = [
     guests: "Max 2",
     size: "23 m²",
     bed: "Queen bed",
-    price: "€69 nightly",
+    nightlyPrice: 69,
   },
   {
     id: 1,
@@ -19,7 +23,7 @@ const ROOMS = [
     guests: "Max 2",
     size: "27 m²",
     bed: "Queen bed",
-    price: "€69 nightly",
+    nightlyPrice: 69,
   },
   {
     id: 2,
@@ -28,7 +32,7 @@ const ROOMS = [
     guests: "Max 4",
     size: "32 m²",
     bed: "King bed · Sofa bed",
-    price: "€76 nightly",
+    nightlyPrice: 76,
   },
 ];
 
@@ -39,8 +43,16 @@ const FEATURED_ROOM = {
   guests: "Max 4",
   size: "37 m²",
   bed: "King bed · Sofa bed",
-  price: "€137 nightly",
+  nightlyPrice: 137,
 };
+
+function formatPrice(nightlyPrice: number, searchedNights: number | null) {
+  if (searchedNights) {
+    const total = Math.round(nightlyPrice * searchedNights * 0.85);
+    return `€${total} total`;
+  }
+  return `€${nightlyPrice} nightly`;
+}
 
 function CardOverlays() {
   return (
@@ -73,7 +85,66 @@ function CardOverlays() {
   );
 }
 
+function formatDateRange(checkIn: Date | null, checkOut: Date | null) {
+  if (!checkIn) return null;
+  const fmt = (d: Date) =>
+    d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  if (!checkOut) return fmt(checkIn) + " – ...";
+  return fmt(checkIn) + " – " + fmt(checkOut);
+}
+
+function formatGuests(adults: number, children: number, infants: number) {
+  if (adults === 1 && children === 0 && infants === 0) return null;
+  const parts: string[] = [];
+  if (adults > 0) parts.push(`${adults} adult${adults !== 1 ? "s" : ""}`);
+  if (children > 0) parts.push(`${children} child${children !== 1 ? "ren" : ""}`);
+  if (infants > 0) parts.push(`${infants} infant${infants !== 1 ? "s" : ""}`);
+  return parts.join(", ");
+}
+
 export default function RoomsVariationB() {
+  const [openPicker, setOpenPicker] = useState<"dates" | "guests" | null>(null);
+  const [checkIn, setCheckIn] = useState<Date | null>(null);
+  const [checkOut, setCheckOut] = useState<Date | null>(null);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [infants, setInfants] = useState(0);
+  const [searchedNights, setSearchedNights] = useState<number | null>(null);
+  const [breakdownRoom, setBreakdownRoom] = useState<number | null>(null);
+
+  const searchRowRef = useRef<HTMLDivElement>(null);
+
+  // Listen for custom event from sticky header
+  useEffect(() => {
+    const handler = () => setOpenPicker("dates");
+    window.addEventListener("open-date-picker", handler);
+    return () => window.removeEventListener("open-date-picker", handler);
+  }, []);
+
+  // Click-outside to close pickers
+  const handleClickOutside = useCallback(
+    (e: MouseEvent) => {
+      if (
+        openPicker &&
+        searchRowRef.current &&
+        !searchRowRef.current.contains(e.target as Node)
+      ) {
+        setOpenPicker(null);
+      }
+    },
+    [openPicker],
+  );
+
+  useEffect(() => {
+    if (openPicker) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [openPicker, handleClickOutside]);
+
+  const dateLabel = formatDateRange(checkIn, checkOut);
+  const guestLabel = formatGuests(adults, children, infants);
+
   return (
     <section className={styles.section}>
       <div className={styles.sectionDivider} aria-hidden="true" />
@@ -83,24 +154,85 @@ export default function RoomsVariationB() {
         <div className={styles.header}>
           <h2 className={styles.heading}>Our Rooms</h2>
 
-          <div className={styles.searchRow}>
+          <div className={styles.searchRow} ref={searchRowRef}>
             {/* Search pill */}
-            <div className={styles.searchPill}>
-              <div className={styles.searchCol}>
+            <div className={`${styles.searchPill} ${openPicker ? styles.searchPillOpen : ""}`}>
+              <button
+                className={`${styles.searchCol} ${styles.searchColBtn} ${openPicker === "dates" ? styles.searchColActive : ""}`}
+                type="button"
+                onClick={() => setOpenPicker(openPicker === "dates" ? null : "dates")}
+              >
                 <span className={styles.searchLabel}>When</span>
-                <span className={styles.searchPlaceholder}>Add dates</span>
-              </div>
-              <div className={styles.searchDivider} />
-              <div className={styles.searchCol}>
-                <span className={styles.searchLabel}>Who</span>
-                <span className={styles.searchPlaceholder}>Add guests</span>
-              </div>
-              <button className={styles.searchBtn} type="button" aria-label="Search">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
+                <span className={dateLabel ? styles.searchValue : styles.searchPlaceholder}>
+                  {dateLabel || "Add dates"}
+                </span>
               </button>
+              <div className={`${styles.searchDivider} ${openPicker ? styles.searchDividerHidden : ""}`} />
+              <div
+                className={`${styles.searchWhoGroup} ${openPicker === "guests" ? styles.searchWhoGroupActive : ""}`}
+                onClick={() => setOpenPicker(openPicker === "guests" ? null : "guests")}
+              >
+                <div className={`${styles.searchCol} ${styles.searchColBtn}`}>
+                  <span className={styles.searchLabel}>Who</span>
+                  <span className={guestLabel ? styles.searchValue : styles.searchPlaceholder}>
+                    {guestLabel || "Add guests"}
+                  </span>
+                </div>
+                <button
+                  className={styles.searchBtn}
+                  type="button"
+                  aria-label="Search"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (checkIn && checkOut) {
+                      const nights = Math.round((checkOut.getTime() - checkIn.getTime()) / 86400000);
+                      setSearchedNights(nights);
+                    }
+                    setOpenPicker(null);
+                  }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </div>
             </div>
+
+            {/* Dropdowns */}
+            {openPicker === "dates" && (
+              <DatePicker
+                checkIn={checkIn}
+                checkOut={checkOut}
+                onSelect={(ci, co) => {
+                  setCheckIn(ci);
+                  setCheckOut(co);
+                }}
+                onClose={() => setOpenPicker(null)}
+                onClear={() => {
+                  setCheckIn(null);
+                  setCheckOut(null);
+                  setSearchedNights(null);
+                }}
+              />
+            )}
+            {openPicker === "guests" && (
+              <GuestPicker
+                adults={adults}
+                children={children}
+                infants={infants}
+                onChange={(a, c, i) => {
+                  setAdults(a);
+                  setChildren(c);
+                  setInfants(i);
+                }}
+                onClose={() => setOpenPicker(null)}
+                onClear={() => {
+                  setAdults(1);
+                  setChildren(0);
+                  setInfants(0);
+                }}
+              />
+            )}
 
             {/* Filter chip */}
             <button className={styles.filterChip} type="button">
@@ -137,9 +269,26 @@ export default function RoomsVariationB() {
                       <span className={styles.detail}>{room.bed}</span>
                     </div>
                   </div>
-                  <div className={styles.priceRow}>
-                    <span className={styles.price}>{room.price}</span>
+                  <div className={`${styles.priceRow} ${searchedNights ? styles.priceRowRelative : ""}`}>
+                    {searchedNights ? (
+                      <button
+                        className={`${styles.price} ${styles.priceClickable}`}
+                        type="button"
+                        onClick={() => setBreakdownRoom(breakdownRoom === room.id ? null : room.id)}
+                      >
+                        {formatPrice(room.nightlyPrice, searchedNights)}
+                      </button>
+                    ) : (
+                      <span className={styles.price}>{formatPrice(room.nightlyPrice, searchedNights)}</span>
+                    )}
                     <span className={styles.priceBadge}>Starting member price</span>
+                    {breakdownRoom === room.id && searchedNights && (
+                      <PriceBreakdown
+                        nightlyPrice={room.nightlyPrice}
+                        nights={searchedNights}
+                        onClose={() => setBreakdownRoom(null)}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -166,9 +315,26 @@ export default function RoomsVariationB() {
                     <span className={styles.detail}>{FEATURED_ROOM.bed}</span>
                   </div>
                 </div>
-                <div className={styles.priceRow}>
-                  <span className={styles.price}>{FEATURED_ROOM.price}</span>
+                <div className={`${styles.priceRow} ${searchedNights ? styles.priceRowRelative : ""}`}>
+                  {searchedNights ? (
+                    <button
+                      className={`${styles.price} ${styles.priceClickable}`}
+                      type="button"
+                      onClick={() => setBreakdownRoom(breakdownRoom === FEATURED_ROOM.id ? null : FEATURED_ROOM.id)}
+                    >
+                      {formatPrice(FEATURED_ROOM.nightlyPrice, searchedNights)}
+                    </button>
+                  ) : (
+                    <span className={styles.price}>{formatPrice(FEATURED_ROOM.nightlyPrice, searchedNights)}</span>
+                  )}
                   <span className={styles.priceBadge}>Starting member price</span>
+                  {breakdownRoom === FEATURED_ROOM.id && searchedNights && (
+                    <PriceBreakdown
+                      nightlyPrice={FEATURED_ROOM.nightlyPrice}
+                      nights={searchedNights}
+                      onClose={() => setBreakdownRoom(null)}
+                    />
+                  )}
                 </div>
               </div>
             </div>

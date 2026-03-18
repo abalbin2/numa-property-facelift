@@ -1,0 +1,202 @@
+/* ──────────────────────────────────────
+   DATE PICKER — Airbnb-inspired calendar
+────────────────────────────────────── */
+.container {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #dedddb;
+  border-radius: 12px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 32px 32px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Position context for nav arrows */
+}
+
+.months {
+  display: flex;
+  gap: 32px;
+}
+
+.month {
+  width: 300px;
+}
+
+/* Month header */
+.monthHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.monthLabel {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.0125em;
+  color: #191919;
+}
+
+.navBtn {
+  position: absolute;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #dedddb;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 1;
+  transition: background 0.15s ease;
+}
+
+.navBtn:hover {
+  background: #f4f4f4;
+}
+
+.navBtnPrev {
+  left: 32px;
+}
+
+.navBtnNext {
+  right: 32px;
+}
+
+/* Day names row */
+.dayNames {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+
+.dayName {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #6d706f;
+  text-align: center;
+  padding: 4px 0;
+  text-transform: uppercase;
+}
+
+/* Day grid */
+.dayGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.dayCell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.dayBtn {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1;
+  color: #191919;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dayBtn:hover {
+  border: 1px solid #191919;
+}
+
+/* Selected endpoints */
+.dayBtnSelected {
+  background: #191919;
+  color: #fff;
+  font-weight: 600;
+}
+
+.dayBtnSelected:hover {
+  border: none;
+  background: #191919;
+}
+
+/* In-range background */
+.dayInRange {
+  background: #f4f4f4;
+}
+
+/* Range start: half-pill on right */
+.dayRangeStart {
+  background: linear-gradient(to right, transparent 50%, #f4f4f4 50%);
+}
+
+/* Range end: half-pill on left */
+.dayRangeEnd {
+  background: linear-gradient(to left, transparent 50%, #f4f4f4 50%);
+}
+
+/* Disabled / past dates */
+.dayBtnDisabled {
+  color: #dedddb;
+  cursor: default;
+  pointer-events: none;
+}
+
+.dayBtnDisabled:hover {
+  border: none;
+}
+
+/* Empty cell (padding days) */
+.dayEmpty {
+  height: 40px;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid #dedddb;
+}
+
+.footerBtn {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #191919;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footerBtn:hover {
+  color: #6d706f;
+}

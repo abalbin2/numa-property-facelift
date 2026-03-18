@@ -1,0 +1,114 @@
+/* ──────────────────────────────────────
+   PRICE BREAKDOWN POPOVER
+────────────────────────────────────── */
+.container {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  z-index: 50;
+  background: #fff;
+  border: 1px solid #dedddb;
+  border-radius: 12px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.33;
+  letter-spacing: -0.011em;
+  color: #191919;
+}
+
+.closeBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #dedddb;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s ease;
+}
+
+.closeBtn:hover {
+  background: #f4f4f4;
+}
+
+/* Line items */
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.lineLabel {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.01em;
+  color: #191919;
+}
+
+.lineValue {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.01em;
+  color: #191919;
+  text-align: right;
+}
+
+.lineDiscount {
+  color: #2E7D32;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: #dedddb;
+}
+
+/* Total row */
+.totalLabel {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.0125em;
+  color: #191919;
+}
+
+.totalValue {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.0125em;
+  color: #191919;
+  text-align: right;
+}

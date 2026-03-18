@@ -16,6 +16,7 @@ import ReviewsVariationA from "./sections/reviews/VariationA";
 import AdditionalInfoVariationA from "./sections/additional-info/VariationA";
 import FooterVariationA from "./sections/footer/VariationA";
 import { SECTION_CONFIG } from "./sections/config";
+import StickyHeader from "./components/StickyHeader";
 import type { ComponentType } from "react";
 
 const COMPONENTS: Record<string, ComponentType> = {
@@ -46,6 +47,7 @@ export default async function PropertyPage({
 
   return (
     <>
+      <StickyHeader />
       {SECTION_CONFIG.map((section) => {
         const selected =
           typeof params[section.id] === "string"
@@ -55,16 +57,20 @@ export default async function PropertyPage({
         if (selected) {
           const Component = COMPONENTS[`${section.id}-${selected}`];
           if (!Component) return null;
-          return <Component key={section.id} />;
+          return (
+            <div key={section.id} id={section.id}>
+              <Component />
+            </div>
+          );
         }
 
         // Team mode: all variants stacked with labels
-        return section.variants.map((variant) => {
+        return section.variants.map((variant, i) => {
           const Component = COMPONENTS[`${section.id}-${variant.id}`];
           if (!Component) return null;
           const showLabel = section.variants.length > 1;
           return (
-            <div key={`${section.id}-${variant.id}`}>
+            <div key={`${section.id}-${variant.id}`} {...(i === 0 ? { id: section.id } : {})}>
               {showLabel && (
                 <div className={styles.variantLabel}>
                   <span>{section.label}</span>

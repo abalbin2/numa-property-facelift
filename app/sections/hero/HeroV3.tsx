@@ -105,7 +105,7 @@ export default function HeroV3() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.hero}>
+    <section ref={sectionRef} className={styles.hero} data-section="hero">
 
       {/* White end-state background */}
       <div ref={sectionBgRef} className={styles.sectionBg} />

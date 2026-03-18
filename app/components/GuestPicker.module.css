@@ -1,0 +1,130 @@
+/* ──────────────────────────────────────
+   GUEST PICKER
+────────────────────────────────────── */
+.container {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 50%;
+  transform: translateX(calc(50% - 0px));
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #dedddb;
+  border-radius: 12px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Guest row */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.row:last-of-type {
+  border-bottom: none;
+}
+
+.rowInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rowLabel {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.0125em;
+  color: #191919;
+}
+
+.rowDesc {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.01em;
+  color: #6d706f;
+}
+
+/* Counter controls */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.countBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #dedddb;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: border-color 0.15s ease;
+}
+
+.countBtn:hover {
+  border-color: #191919;
+}
+
+.countBtnDisabled {
+  border-color: #f4f4f4;
+  cursor: default;
+  pointer-events: none;
+}
+
+.countBtnDisabled svg {
+  opacity: 0.3;
+}
+
+.count {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  color: #191919;
+  width: 20px;
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid #dedddb;
+  margin-top: 4px;
+}
+
+.footerBtn {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #191919;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footerBtn:hover {
+  color: #6d706f;
+}
