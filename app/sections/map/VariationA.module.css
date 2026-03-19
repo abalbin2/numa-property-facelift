@@ -211,6 +211,7 @@
 }
 
 .swimCard {
+  position: relative;
   padding: 0;
   background: none;
   border: none;
@@ -302,8 +303,9 @@
     right: 0;
     gap: 16px;
     overflow-x: auto;
-    padding: 0 24px;
-    scroll-snap-type: x mandatory;
+    padding: 0;
+    scroll-padding-inline-start: 24px;
+    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
     z-index: 1000;
     cursor: grab;
@@ -330,9 +332,25 @@
     scroll-snap-align: start;
   }
 
+  .swimCard:first-child {
+    margin-left: 24px;
+  }
+
+  .swimCard:last-child {
+    margin-right: 24px;
+  }
+
   .swimCardSelected {
-    outline: 1px solid #191919;
-    outline-offset: -1px;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .swimCardSelected::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid #191919;
+    border-radius: 16px;
+    pointer-events: none;
   }
 
   .swimCardImage {

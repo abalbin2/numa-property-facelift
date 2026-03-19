@@ -24,25 +24,28 @@ export default function MapSection() {
 
   // Click-and-drag scrolling for swim lane
   const swimLaneRef = useRef<HTMLDivElement>(null);
-  const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0, moved: false });
+  const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0, moved: false, isMouse: false });
 
   const onPointerDown = useCallback((e: React.PointerEvent) => {
+    if (e.pointerType !== "mouse") return; // let touch scroll natively
     const el = swimLaneRef.current;
     if (!el) return;
-    dragState.current = { isDown: true, startX: e.clientX, scrollLeft: el.scrollLeft, moved: false };
+    dragState.current = { isDown: true, startX: e.clientX, scrollLeft: el.scrollLeft, moved: false, isMouse: true };
     el.setPointerCapture(e.pointerId);
     el.style.cursor = "grabbing";
   }, []);
 
   const onPointerMove = useCallback((e: React.PointerEvent) => {
-    if (!dragState.current.isDown) return;
+    if (!dragState.current.isDown || !dragState.current.isMouse) return;
     const dx = e.clientX - dragState.current.startX;
     if (Math.abs(dx) > 4) dragState.current.moved = true;
     swimLaneRef.current!.scrollLeft = dragState.current.scrollLeft - dx;
   }, []);
 
   const onPointerUp = useCallback((e: React.PointerEvent) => {
+    if (!dragState.current.isMouse) return;
     dragState.current.isDown = false;
+    dragState.current.isMouse = false;
     const el = swimLaneRef.current;
     if (el) {
       el.releasePointerCapture(e.pointerId);
