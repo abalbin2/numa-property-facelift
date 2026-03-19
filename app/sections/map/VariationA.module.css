@@ -204,3 +204,144 @@
   line-height: 1.5;
   color: #6d706f;
 }
+
+/* ── Mobile swim lane (hidden on desktop) ── */
+.swimLane {
+  display: none;
+}
+
+.swimCard {
+  padding: 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+.swimCardSelected {
+  /* overridden in media query */
+}
+
+.swimCardImage {
+  width: 100%;
+  display: block;
+}
+
+.swimCardBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.swimCardName {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #000;
+}
+
+.swimCardWalk {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6d706f;
+}
+
+.swimCardRating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6d706f;
+}
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 0;
+    max-width: none;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 1.22;
+    letter-spacing: -0.5px;
+    padding: 8px 24px;
+  }
+
+  .columns {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mapWrapper {
+    flex: none;
+    border-radius: 0;
+    border: none;
+    height: 75vh;
+  }
+
+  .detailCard {
+    display: none;
+  }
+
+  .panel {
+    display: none;
+  }
+
+  .swimLane {
+    display: flex;
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 0 24px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1000;
+    cursor: grab;
+    touch-action: pan-x;
+    user-select: none;
+  }
+
+  .swimLane::-webkit-scrollbar {
+    display: none;
+  }
+
+  .swimLane {
+    scrollbar-width: none;
+  }
+
+  .swimCard {
+    flex-shrink: 0;
+    width: 265px;
+    border-radius: 16px;
+    border: 1px solid #dedddb;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+  }
+
+  .swimCardSelected {
+    outline: 1px solid #191919;
+    outline-offset: -1px;
+  }
+
+  .swimCardImage {
+    height: 104px;
+    object-fit: cover;
+  }
+
+  .swimCardBody {
+    padding: 16px;
+    gap: 12px;
+  }
+}

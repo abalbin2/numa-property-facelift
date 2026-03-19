@@ -224,6 +224,16 @@
   color: #191919;
 }
 
+/* Heading row — on desktop, just centers the heading */
+.headingRow {
+  display: contents;
+}
+
+/* Mobile filter chip hidden on desktop */
+.filterChipMobile {
+  display: none;
+}
+
 /* ──────────────────────────────────────
    CARDS AREA
 ────────────────────────────────────── */
@@ -452,5 +462,89 @@
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
+}
+
+/* ──────────────────────────────────────
+   BACKDROP OVERLAY
+────────────────────────────────────── */
+.backdrop {
+  display: none;
+}
+
+/* ──────────────────────────────────────
+   MOBILE — max-width: 768px
+────────────────────────────────────── */
+@media (max-width: 768px) {
+  .section {
+    padding: 0 0 40px;
+  }
+
+  .sectionDivider {
+    margin: 0 24px 40px;
+  }
+
+  .sectionDividerBottom {
+    margin: 40px 24px 0;
+  }
+
+  .header {
+    gap: 16px;
+    padding: 0 24px 16px;
+    align-items: stretch;
+  }
+
+  .headingRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .heading {
+    text-align: left;
+  }
+
+  .searchPill {
+    width: auto;
+    flex: 1;
+    padding: 0 12px 0 20px;
+  }
+
+  .searchBtn {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Show mobile filter chip (in heading row), hide desktop one */
+  .filterChipMobile {
+    display: flex;
+    position: static;
+    padding: 5px 10px;
+  }
+
+  .filterChipDesktop {
+    display: none;
+  }
+
+  .filterLabel {
+    display: none;
+  }
+
+  .cardsArea {
+    padding: 0 24px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
 }
 

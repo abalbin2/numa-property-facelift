@@ -178,7 +178,7 @@ export default function SpotlightVariationB() {
           </div>
         </div>
 
-        {/* Right: text list */}
+        {/* Right: text list (desktop) */}
         <div className={styles.textColumn}>
           {FEATURES.map((f, i) => (
             <div
@@ -195,6 +195,34 @@ export default function SpotlightVariationB() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mobile: single feature text (hidden on desktop) */}
+        <div className={styles.mobileText}>
+          <p className={styles.featureName} style={{ color: '#191919' }}>{FEATURES[active].name}</p>
+          <p className={styles.description}>{FEATURES[active].description}</p>
+        </div>
+
+        {/* Mobile chevron navigation */}
+        <div className={styles.mobileNav}>
+          <button
+            className={styles.navBtn}
+            onClick={() => setActive((active - 1 + FEATURES.length) % FEATURES.length)}
+            aria-label="Previous feature"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M15 6L9 12L15 18" stroke="#191919" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button
+            className={styles.navBtn}
+            onClick={() => setActive((active + 1) % FEATURES.length)}
+            aria-label="Next feature"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 6L15 12L9 18" stroke="#191919" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
       </div>
       <div className={styles.sectionDivider} aria-hidden="true" />

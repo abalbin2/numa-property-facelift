@@ -68,3 +68,46 @@
   border-radius: 4px;
   flex-shrink: 0;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    height: auto;
+  }
+
+  .sticky {
+    position: relative;
+    min-height: 85vh;
+    height: auto;
+    padding: 136px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .headline {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: auto;
+    max-width: none;
+    padding: 0 24px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .columnsInner {
+    width: 349px; /* 161 + 27 gap + 161, centered */
+    margin: 0 auto;
+  }
+
+  .column {
+    width: 161px;
+    gap: 12px;
+  }
+
+  .img {
+    width: 161px;
+    border-radius: 0;
+  }
+}

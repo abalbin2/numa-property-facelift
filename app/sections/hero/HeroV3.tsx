@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import styles from "./hero-v3.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,8 +21,11 @@ export default function HeroV3() {
   const photoCRef      = useRef<HTMLDivElement>(null);
   const photoDRef      = useRef<HTMLDivElement>(null);
   const gradientRef    = useRef<HTMLDivElement>(null);
+  const isMobile       = useIsMobile();
 
   useEffect(() => {
+    if (isMobile) return;
+
     const section     = sectionRef.current;
     const mainVideo   = mainVideoRef.current;
     const heroOverlay = heroOverlayRef.current;
@@ -101,11 +105,19 @@ export default function HeroV3() {
     return () => {
       tl.scrollTrigger?.kill();
       tl.kill();
+      // Clear inline styles so mobile layout isn't broken by leftover GSAP opacity/transform
+      [mainVideo, heroOverlay, sectionBg, photoBRef.current, photoCRef.current,
+       photoDRef.current, headlineRef.current, quickInfoRef.current, gradientRef.current]
+        .filter(Boolean)
+        .forEach(el => gsap.set(el!, { clearProps: "all" }));
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <section ref={sectionRef} className={styles.hero} data-section="hero">
+
+      {/* Mobile-only spacer to reserve viewport height for the absolute video */}
+      <div className={styles.heroVideoSpacer} />
 
       {/* White end-state background */}
       <div ref={sectionBgRef} className={styles.sectionBg} />
@@ -122,6 +134,22 @@ export default function HeroV3() {
         </div>
         <div ref={photoDRef} className={`${styles.endPhoto} ${styles.photoD}`}>
           <Image src="/social/collage-3.jpg" alt="Numa property guests" fill style={{ objectFit: "cover" }} />
+        </div>
+
+        {/* Mobile-only: compact 4-photo collage */}
+        <div className={styles.mobileCollage}>
+          <div className={styles.collagePhoto} style={{ top: 0, left: 0, width: '50%', height: '46.4%' }}>
+            <Image src="/social/collage-1.jpg" alt="Numa Rotterdam room" fill style={{ objectFit: "cover" }} />
+          </div>
+          <div className={styles.collagePhoto} style={{ top: '50.9%', left: '11.6%', width: '45.5%', height: '49.1%' }}>
+            <Image src="/hero-v3-photo-b.png" alt="Rotterdam Coolsingel" fill style={{ objectFit: "cover" }} />
+          </div>
+          <div className={styles.collagePhoto} style={{ top: '12.7%', left: '53.7%', width: '46.3%', height: '33.7%' }}>
+            <Image src="/hero-v3-photo-c.png" alt="Numa property lounge" fill style={{ objectFit: "cover" }} />
+          </div>
+          <div className={styles.collagePhoto} style={{ top: '50.9%', left: '61.3%', width: '30.5%', height: '26.8%' }}>
+            <Image src="/social/collage-3.jpg" alt="Numa property guests" fill style={{ objectFit: "cover" }} />
+          </div>
         </div>
 
         {/* Headline */}
@@ -162,7 +190,7 @@ export default function HeroV3() {
       </div>{/* end endStateContainer */}
 
       {/* Main video — GSAP shrinks this from full-bleed to end-state card position */}
-      <div ref={mainVideoRef} className={styles.mainVideo}>
+      <div ref={mainVideoRef} className={styles.mainVideo} data-hero-video>
         <video
           ref={videoElRef}
           src="/hero-v3-bg.mp4"
@@ -177,6 +205,18 @@ export default function HeroV3() {
 
       {/* Hero overlay — fades out on scroll */}
       <div ref={heroOverlayRef} className={styles.heroOverlay}>
+
+        {/* Mobile-only: back button + photo counter */}
+        {isMobile && (
+          <>
+            <button className={styles.backBtn} type="button" aria-label="Go back" onClick={() => window.history.back()}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 19L8 12L15 5" stroke="#191919" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <div className={styles.photoCounter}>1/12</div>
+          </>
+        )}
 
         {/* Frosted white nav */}
         <nav className={styles.nav}>

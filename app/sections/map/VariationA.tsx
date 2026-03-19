@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { POIS } from "./data";
 import styles from "./VariationA.module.css";
@@ -19,8 +19,36 @@ function StarIcon({ size = 16 }: { size?: number }) {
 }
 
 export default function MapSection() {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(POIS[0]?.id ?? null);
   const selected = POIS.find((p) => p.id === selectedId) ?? null;
+
+  // Click-and-drag scrolling for swim lane
+  const swimLaneRef = useRef<HTMLDivElement>(null);
+  const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0, moved: false });
+
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    const el = swimLaneRef.current;
+    if (!el) return;
+    dragState.current = { isDown: true, startX: e.clientX, scrollLeft: el.scrollLeft, moved: false };
+    el.setPointerCapture(e.pointerId);
+    el.style.cursor = "grabbing";
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!dragState.current.isDown) return;
+    const dx = e.clientX - dragState.current.startX;
+    if (Math.abs(dx) > 4) dragState.current.moved = true;
+    swimLaneRef.current!.scrollLeft = dragState.current.scrollLeft - dx;
+  }, []);
+
+  const onPointerUp = useCallback((e: React.PointerEvent) => {
+    dragState.current.isDown = false;
+    const el = swimLaneRef.current;
+    if (el) {
+      el.releasePointerCapture(e.pointerId);
+      el.style.cursor = "";
+    }
+  }, []);
 
   return (
     <section className={styles.section}>
@@ -55,6 +83,42 @@ export default function MapSection() {
               </div>
             </div>
           )}
+
+          {/* Mobile swim lane — horizontally scrollable POI cards */}
+          <div
+            className={styles.swimLane}
+            ref={swimLaneRef}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+          >
+            {POIS.map((poi) => (
+              <button
+                key={poi.id}
+                className={`${styles.swimCard} ${poi.id === selectedId ? styles.swimCardSelected : ""}`}
+                onClick={() => {
+                  if (dragState.current.moved) return;
+                  setSelectedId(poi.id === selectedId ? null : poi.id);
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={poi.image}
+                  alt={poi.name}
+                  className={styles.swimCardImage}
+                />
+                <div className={styles.swimCardBody}>
+                  <span className={styles.swimCardName}>{poi.name}</span>
+                  <span className={styles.swimCardWalk}>{poi.walkTime}</span>
+                  <span className={styles.swimCardRating}>
+                    <StarIcon />
+                    {poi.rating}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Hot spots panel */}

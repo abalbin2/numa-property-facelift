@@ -200,3 +200,82 @@
 .footerBtn:hover {
   color: #6d706f;
 }
+
+/* Mobile header — hidden on desktop */
+.mobileHeader {
+  display: none;
+}
+
+/* ──────────────────────────────────────
+   MOBILE BOTTOM SHEET
+────────────────────────────────────── */
+@media (max-width: 768px) {
+  .container {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    max-height: 90svh;
+    border-radius: 16px 16px 0 0;
+    overflow-y: auto;
+    padding: 24px 24px 20px;
+    z-index: 1000;
+  }
+
+  .mobileHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .mobileCloseBtn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #dedddb;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .mobileClearBtn {
+    font-family: var(--font), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #191919;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .months {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .month {
+    width: 100%;
+  }
+
+  .navBtn {
+    display: none;
+  }
+
+  .footer {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    padding: 16px 0;
+    border-top: 1px solid #dedddb;
+  }
+}

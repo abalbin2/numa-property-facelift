@@ -345,3 +345,195 @@
   cursor: pointer;
   white-space: nowrap;
 }
+
+/* ──────────────────────────────────────
+   MOBILE-ONLY ELEMENTS
+────────────────────────────────────── */
+.backBtn {
+  display: none;
+}
+
+.photoCounter {
+  display: none;
+}
+
+/* Hidden on desktop */
+.heroVideoSpacer {
+  display: none;
+}
+
+.mobileCollage {
+  display: none;
+}
+
+/* ──────────────────────────────────────
+   MOBILE RESPONSIVE
+────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+    min-height: auto;
+  }
+
+  .sectionBg {
+    display: none;
+  }
+
+  /* Invisible spacer that reserves 100svh for the absolute-positioned video */
+  .heroVideoSpacer {
+    display: block;
+    width: 100%;
+    height: 100svh;
+    flex-shrink: 0;
+  }
+
+  .endStateContainer {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    padding: 56px 24px 40px;
+    background: #fff;
+    pointer-events: auto;
+    z-index: 4;
+    order: 2;
+  }
+
+  .endPhoto {
+    display: none;
+  }
+
+  .endContent {
+    position: static;
+    width: 100%;
+  }
+
+  .headline {
+    left: auto;
+    top: auto;
+    width: 100%;
+  }
+
+  .quickInfo {
+    left: auto;
+    top: auto;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .mainVideo {
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100svh !important;
+  }
+
+  .heroOverlay {
+    height: 100svh;
+    inset: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .nav {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .navLogo,
+  .navLinks {
+    display: none;
+  }
+
+  .heroContent {
+    bottom: 100px;
+    left: 24px;
+    right: 24px;
+    width: auto;
+    gap: 24px;
+  }
+
+  .heroName {
+    font-size: 42px;
+    line-height: 1.1;
+  }
+
+  .metaRow {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .metaText {
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .metaTextBold {
+    font-weight: 600;
+  }
+
+  .ctaRow {
+    display: none;
+  }
+
+  .backBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 66px;
+    left: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(244, 244, 244, 0.7);
+    border: 1px solid #191919;
+    cursor: pointer;
+    z-index: 20;
+    pointer-events: auto;
+  }
+
+  .photoCounter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 66px;
+    right: 24px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.5);
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #ffffff;
+    z-index: 20;
+    pointer-events: auto;
+  }
+
+  /* Mobile collage: 4-photo compact layout (Figma 354×332) */
+  .mobileCollage {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 354 / 332;
+  }
+
+  .collagePhoto {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+}

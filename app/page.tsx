@@ -18,6 +18,7 @@ import AdditionalInfoVariationA from "./sections/additional-info/VariationA";
 import FooterVariationA from "./sections/footer/VariationA";
 import { SECTION_CONFIG } from "./sections/config";
 import StickyHeader from "./components/StickyHeader";
+import MobileStickyBar from "./components/MobileStickyBar";
 import type { ComponentType } from "react";
 
 const COMPONENTS: Record<string, ComponentType> = {
@@ -50,6 +51,7 @@ export default async function PropertyPage({
   return (
     <>
       <StickyHeader />
+      <MobileStickyBar />
       {SECTION_CONFIG.map((section) => {
         const selected =
           typeof params[section.id] === "string"

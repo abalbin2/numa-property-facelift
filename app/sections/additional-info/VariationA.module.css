@@ -66,10 +66,10 @@
 .itemTitle {
   font-family: var(--font);
   font-weight: 300;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height: 24px;
   letter-spacing: -0.2px;
-  color: #000;
+  color: #191919;
   font-feature-settings: 'liga' off, 'clig' off;
 }
 
@@ -114,4 +114,35 @@
   height: 1px;
   background: #dedddb;
   margin: 80px 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .section {
+    padding: 0 24px 40px;
+  }
+
+  .topDivider {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  /* Stack title above accordion instead of side-by-side */
+  .group {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .groupTitle {
+    flex: none;
+  }
+
+  .list {
+    flex: none;
+    width: 100%;
+  }
+
+  .groupDivider {
+    margin: 64px 0;
+  }
 }

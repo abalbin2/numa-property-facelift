@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./VariationB.module.css";
@@ -48,11 +48,45 @@ const COLUMNS = [
   },
 ];
 
+const MOBILE_COLUMNS = [
+  {
+    left: 0,
+    startY: 580,
+    endY: -100,
+    images: [
+      { src: "/cursor-trail/09.png", height: 166 },
+      { src: "/cursor-trail/08.png", height: 213 },
+      { src: "/cursor-trail/07.png", height: 212 },
+    ],
+  },
+  {
+    left: 188,
+    startY: 650,
+    endY: -150,
+    images: [
+      { src: "/cursor-trail/01.png", height: 211 },
+      { src: "/cursor-trail/05.png", height: 216 },
+      { src: "/cursor-trail/04.png", height: 211 },
+    ],
+  },
+];
+
 export default function NeighborhoodScrollSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const colRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  const columns = isMobile ? MOBILE_COLUMNS : COLUMNS;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -60,33 +94,38 @@ export default function NeighborhoodScrollSection() {
     const ctx = gsap.context(() => {
       // Set initial column positions (all below viewport)
       colRefs.current.forEach((col, i) => {
-        if (col) gsap.set(col, { y: COLUMNS[i].startY });
+        if (col) gsap.set(col, { y: columns[i].startY });
       });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wrapperRef.current,
-          start: "top top",
-          end: "bottom bottom",
+          start: isMobile ? "top bottom" : "top top",
+          end: isMobile ? "bottom top" : "bottom bottom",
           scrub: 1.5,
         },
       });
 
-      // Background fades from white → pink (quick fade, completes early)
-      tl.to(stickyRef.current, { backgroundColor: "#FFC9D2", duration: 0.02, ease: "none" }, 0);
+      // On mobile, nothing happens until the section is centered in viewport (~0.45)
+      // On desktop, animations start immediately (sticky pinning holds the section)
+      const phaseStart = isMobile ? 0.45 : 0;
 
-      // Text fully fades out in the first half of scroll
-      tl.to(textRef.current, { opacity: 0, duration: 0.4, ease: "none" }, 0);
+      // Background fades from white → pink
+      tl.to(stickyRef.current, { backgroundColor: "#FFC9D2", duration: 0.05, ease: "none" }, phaseStart);
+
+      // Text fades out
+      tl.to(textRef.current, { opacity: 0, duration: isMobile ? 0.2 : 0.4, ease: "none" }, phaseStart);
 
       // Each column travels a different distance = parallax depth effect
+      // Images start rising at the same moment text starts fading
       colRefs.current.forEach((col, i) => {
         if (!col) return;
-        tl.to(col, { y: COLUMNS[i].endY, ease: "none" }, 0);
+        tl.to(col, { y: columns[i].endY, ease: "none" }, phaseStart);
       });
     }, wrapperRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile, columns]);
 
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
@@ -100,9 +139,9 @@ export default function NeighborhoodScrollSection() {
         {/* Image columns */}
         <div className={styles.columnsContainer}>
           <div className={styles.columnsInner}>
-            {COLUMNS.map((col, ci) => (
+            {columns.map((col, ci) => (
               <div
-                key={ci}
+                key={`${isMobile}-${ci}`}
                 ref={(el) => { colRefs.current[ci] = el; }}
                 className={styles.column}
                 style={{ left: col.left }}

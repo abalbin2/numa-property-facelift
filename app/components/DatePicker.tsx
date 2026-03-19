@@ -43,6 +43,7 @@ interface DatePickerProps {
   onSelect: (checkIn: Date | null, checkOut: Date | null) => void;
   onClose: () => void;
   onClear: () => void;
+  isMobile?: boolean;
 }
 
 export default function DatePicker({
@@ -51,6 +52,7 @@ export default function DatePicker({
   onSelect,
   onClose,
   onClear,
+  isMobile = false,
 }: DatePickerProps) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -166,9 +168,37 @@ export default function DatePicker({
   const nextMonth = baseMonth === 11 ? 0 : baseMonth + 1;
   const nextYear = baseMonth === 11 ? baseYear + 1 : baseYear;
 
+  // On mobile, render 6 months for vertical scrolling
+  const mobileMonths: { year: number; month: number }[] = [];
+  if (isMobile) {
+    let m = today.getMonth();
+    let y = today.getFullYear();
+    for (let i = 0; i < 6; i++) {
+      mobileMonths.push({ year: y, month: m });
+      if (m === 11) { m = 0; y++; } else { m++; }
+    }
+  }
+
   return (
     <div className={styles.container} onClick={(e) => e.stopPropagation()}>
-      {/* Nav arrows — positioned at container level, aligned with month headers */}
+      {/* Mobile header — close + clear */}
+      <div className={styles.mobileHeader}>
+        <button
+          className={styles.mobileCloseBtn}
+          onClick={onClose}
+          type="button"
+          aria-label="Close"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M11 3L3 11M3 3L11 11" stroke="#191919" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+        </button>
+        <button className={styles.mobileClearBtn} onClick={onClear} type="button">
+          Clear dates
+        </button>
+      </div>
+
+      {/* Nav arrows — desktop only */}
       <button
         className={`${styles.navBtn} ${styles.navBtnPrev}`}
         onClick={handlePrev}
@@ -192,8 +222,19 @@ export default function DatePicker({
         </svg>
       </button>
       <div className={styles.months}>
-        {renderMonth(baseYear, baseMonth)}
-        {renderMonth(nextYear, nextMonth)}
+        {isMobile
+          ? mobileMonths.map((mo) => (
+              <div key={`${mo.year}-${mo.month}`}>
+                {renderMonth(mo.year, mo.month)}
+              </div>
+            ))
+          : (
+            <>
+              {renderMonth(baseYear, baseMonth)}
+              {renderMonth(nextYear, nextMonth)}
+            </>
+          )
+        }
       </div>
       <div className={styles.footer}>
         <button className={styles.footerBtn} onClick={onClear} type="button">

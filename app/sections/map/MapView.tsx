@@ -122,13 +122,27 @@ function WalkingRoute({ poi }: { poi: POI }) {
   );
 }
 
-function FitBounds() {
+function FitSelection({ selectedId }: { selectedId: string | null }) {
   const map = useMap();
   useEffect(() => {
-    const bounds = L.latLngBounds([[HOTEL.lat, HOTEL.lng]]);
-    POIS.forEach((p) => bounds.extend([p.lat, p.lng]));
-    map.fitBounds(bounds, { padding: [60, 60] });
-  }, [map]);
+    const selected = POIS.find((p) => p.id === selectedId);
+    if (selected) {
+      const bounds = L.latLngBounds([
+        [HOTEL.lat, HOTEL.lng],
+        [selected.lat, selected.lng],
+      ]);
+      map.fitBounds(bounds, {
+        padding: [80, 60],
+        paddingBottomRight: [60, 200],
+        animate: true,
+        duration: 0.5,
+      });
+    } else {
+      const bounds = L.latLngBounds([[HOTEL.lat, HOTEL.lng]]);
+      POIS.forEach((p) => bounds.extend([p.lat, p.lng]));
+      map.fitBounds(bounds, { padding: [60, 60], animate: true, duration: 0.5 });
+    }
+  }, [map, selectedId]);
   return null;
 }
 
@@ -150,7 +164,7 @@ export default function MapView({
       attributionControl={false}
     >
       <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
-      <FitBounds />
+      <FitSelection selectedId={selectedId} />
 
       {/* Hotel marker */}
       <Marker position={[HOTEL.lat, HOTEL.lng]} icon={hotelIcon} />

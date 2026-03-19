@@ -5,8 +5,9 @@ import styles from "./VariationB.module.css";
 import DatePicker from "../../components/DatePicker";
 import GuestPicker from "../../components/GuestPicker";
 import PriceBreakdown from "../../components/PriceBreakdown";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
-const ROOMS = [
+export const ROOMS = [
   {
     id: 0,
     name: "Medium Studio with Kitchenette",
@@ -103,6 +104,7 @@ function formatGuests(adults: number, children: number, infants: number) {
 }
 
 export default function RoomsVariationB() {
+  const isMobile = useIsMobile();
   const [openPicker, setOpenPicker] = useState<"dates" | "guests" | null>(null);
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
@@ -120,6 +122,14 @@ export default function RoomsVariationB() {
     window.addEventListener("open-date-picker", handler);
     return () => window.removeEventListener("open-date-picker", handler);
   }, []);
+
+  // Lock body scroll when picker is open on mobile
+  useEffect(() => {
+    if (isMobile && openPicker) {
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [isMobile, openPicker]);
 
   // Click-outside to close pickers
   const handleClickOutside = useCallback(
@@ -152,7 +162,15 @@ export default function RoomsVariationB() {
 
         {/* ── Header ── */}
         <div className={styles.header}>
-          <h2 className={styles.heading}>Our Rooms</h2>
+          <div className={styles.headingRow}>
+            <h2 className={styles.heading}>Our Rooms</h2>
+            {/* Filter chip — visible here on mobile, hidden on desktop */}
+            <button className={`${styles.filterChip} ${styles.filterChipMobile}`} type="button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 6H21M6 12H18M10 18H14" stroke="#191919" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </button>
+          </div>
 
           <div className={styles.searchRow} ref={searchRowRef}>
             {/* Search pill */}
@@ -198,7 +216,15 @@ export default function RoomsVariationB() {
               </div>
             </div>
 
-            {/* Dropdowns */}
+            {/* Backdrop overlay (mobile only) */}
+            {openPicker && (
+              <div
+                className={styles.backdrop}
+                onClick={() => setOpenPicker(null)}
+              />
+            )}
+
+            {/* Dropdowns / Bottom sheets */}
             {openPicker === "dates" && (
               <DatePicker
                 checkIn={checkIn}
@@ -213,6 +239,7 @@ export default function RoomsVariationB() {
                   setCheckOut(null);
                   setSearchedNights(null);
                 }}
+                isMobile={isMobile}
               />
             )}
             {openPicker === "guests" && (
@@ -234,8 +261,8 @@ export default function RoomsVariationB() {
               />
             )}
 
-            {/* Filter chip */}
-            <button className={styles.filterChip} type="button">
+            {/* Filter chip — desktop only */}
+            <button className={`${styles.filterChip} ${styles.filterChipDesktop}`} type="button">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 6H21M6 12H18M10 18H14" stroke="#191919" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>

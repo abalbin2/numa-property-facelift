@@ -1,0 +1,87 @@
+.bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(222, 221, 219, 0.4);
+  background: rgba(244, 244, 244, 0);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.barScrolled {
+  background: #ffffff;
+  border-top-color: #dedddb;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.priceLabel {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.barScrolled .priceLabel {
+  color: #6d706f;
+}
+
+.priceValue {
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.333;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.barScrolled .priceValue {
+  color: #191919;
+}
+
+.ctaBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 12px 20px;
+  background: #ffffff;
+  color: #191919;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.barScrolled .ctaBtn {
+  background: #191919;
+  color: #ffffff;
+}
+
+/* Hidden on desktop */
+@media (min-width: 769px) {
+  .bar {
+    display: none;
+  }
+}

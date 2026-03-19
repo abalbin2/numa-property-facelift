@@ -73,3 +73,10 @@
 .checkBtn:hover {
   background: #333;
 }
+
+/* Hide desktop sticky header on mobile */
+@media (max-width: 768px) {
+  .header {
+    display: none;
+  }
+}

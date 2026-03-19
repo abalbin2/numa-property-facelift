@@ -183,3 +183,22 @@
 .cta:hover {
   background: #f4f4f4;
 }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .inner {
+    padding: 0 24px 40px;
+  }
+
+  .divider {
+    margin-top: 40px;
+  }
+
+  .content {
+    padding-top: 32px;
+  }
+
+  .cardsViewport {
+    margin-right: -24px;
+  }
+}
